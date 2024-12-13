@@ -26,7 +26,7 @@ const Movies = () => {
 
       const searchTerm = "new";
       const year = 2024;
-      const maxPages = 3;
+      const maxPages = 2;
       let allMovies: Movie[] = [];
       
       // loop through each page of the response

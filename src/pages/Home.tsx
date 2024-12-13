@@ -59,7 +59,7 @@ const Home = () => {
               <h1 className="text-3xl font-bold pb-2">{movie.Title}</h1>
               <div className="flex gap-8 items-center pb-2">
                 <p className="text-lg bg-emerald-600 font-bold px-2 rounded-lg">{movie.Year}</p>
-                <p className="font-bold">{movie.Ratings[0].Value}</p>
+                <p className="font-bold text-orange-400"><i className="fa solid fa-star mr-1"></i>{movie.Ratings[0].Value}</p>
                 <p>{movie.Runtime}</p>
                 <p>{movie.Genre}</p>
               </div>
