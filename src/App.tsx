@@ -1,10 +1,7 @@
-import { useEffect, useState } from 'react'
-import {apiKey} from '../../api/api'
 import Home from './pages/Home'
 import Movies from './movies/Movies'
 import Header from './header/Header'
-
-const API_URL = `http://www.omdbapi.com/?apikey=${apiKey}`
+import TVShows from './tv-show/TVShows'
 
 const App = () => {
   return (
@@ -13,7 +10,8 @@ const App = () => {
       <main>
         <Home />
         <Movies />
-        <div className='bg-emerald-600 px-3 py-1 fixed right-10 bottom-10 rounded-2xl'><a href='#header'>^</a></div>
+        <TVShows/>
+        <a href='#header'><div className='bg-emerald-600 px-3 py-1 fixed right-5 bottom-5 lg:right-10 lg:bottom-10 rounded-2xl hover:bg-emerald-800 duration-150 font-bold'>^</div></a>
       </main>
     </>
   )
