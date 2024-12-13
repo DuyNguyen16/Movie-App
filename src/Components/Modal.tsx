@@ -30,7 +30,7 @@ const Modal = ({ object, closeModal }) => {
                         {/* Details */}
                         <h2 className="lg:text-2xl font-bold mt-2 text-xl">{object.Title}</h2>
                         <hr></hr>
-                        <p className="text-xl">{object.Year}</p>
+                        <p className="text-xl">{object.Year.slice(0, 4)}</p>
                         <p className="text-lg">{object.Genre}</p>
                         <p className="text-md">{object.Plot}</p>
                         <button className='bg-orange-400 rounded-sm py-1 hover:bg-orange-500 duration-150'><i className="fa fa-bookmark mr-2"></i>Add to Watchlist</button>
