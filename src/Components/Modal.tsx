@@ -19,19 +19,23 @@ const Modal = ({ object, closeModal }) => {
                 {/* Close button */}
                 <button onClick={closeModal} className="lg:absolute top-2 right-3 text-white font-bold text-xl">X</button>
 
-                <div className='lg:flex flex-row lg:gap-8'>
+                <div className='md:flex flex-row md:gap-8'>
                     {/* Poster */}
                     <img
                         src={object.Poster === "N/A" ? noPosterImage : object.Poster}
                         alt={object.Title}
-                        className=" lg:h-76 object-cover rounded lg:w-72"
+                        className="object-cover rounded h-40 md:h-4/6"
                     />
-                    <div className='flex flex-col gap-2 lg:w-80'>
+                    <div className='flex flex-col md:gap-2 md:w-80'>
                         {/* Details */}
-                        <h2 className="lg:text-2xl font-bold mt-2 text-xl">{object.Title}</h2>
+                        <h2 className="lg:text-2xl font-bold mt-2 text-lg md:text-xl">{object.Title}</h2>
                         <hr></hr>
-                        <p className="text-xl">{object.Year.slice(0, 4)}</p>
-                        <p className="text-lg">{object.Genre}</p>
+                        <p className="text-xl font-semibold">{object.Year.slice(0, 4)}</p>
+                        <p className="font-bold text-orange-400">
+                        <i className="fa solid fa-star mr-1"></i>
+                        {object.Ratings.length == 0 ? "N/A": object.Ratings[0].Value}
+                        </p>
+                        <p className="text-lg font-semibold">{object.Genre}</p>
                         <p className="text-md">{object.Plot}</p>
                         <button className='bg-orange-400 rounded-sm py-1 hover:bg-orange-500 duration-150'><i className="fa fa-bookmark mr-2"></i>Add to Watchlist</button>
                     </div>
