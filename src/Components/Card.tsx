@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Modal from './Modal'; // Import the Modal component
 import noPosterImage from "../assets/no-poster.jpg";
+import { Movie } from '../types/Types';
 
-const Card = ({ object }) => {
+const Card = ({ object } : {object : Movie}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {

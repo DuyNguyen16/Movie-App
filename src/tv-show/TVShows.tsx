@@ -1,20 +1,12 @@
 import { useEffect, useState } from "react";
 import { apiKey } from "../../../api/api";
 import Card from "../Components/Card";
+import { Movie } from "../types/Types";
 
 const API_URL = `https://www.omdbapi.com/?apikey=${apiKey}`;
 
-interface TVShow {
-    imdbID: string;
-    Title: string;
-    Year: string;
-    Poster: string;
-    Plot?: string;
-    Genre?: string;
-}
-
 const TVShows = () => {
-  const [tvShows, setTVShows] = useState<TVShow[]>([]); // List of TV shows
+  const [tvShows, setTVShows] = useState<Movie[]>([]); // List of TV shows
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -27,7 +19,7 @@ const TVShows = () => {
       const searchTerm = "new"; // Search for new TV shows
         const year = 2024;
         const maxPages = 3;
-        let allTVShows: TVShow[] = [];
+        let allTVShows: Movie[] = [];
 
       // Loop through each page of the response
         for (let page = 1; page <= maxPages; page++) {
@@ -62,7 +54,7 @@ const TVShows = () => {
             }
 
             const detailsData = await detailsResponse.json();
-            return detailsData as TVShow;
+            return detailsData as Movie;
         })
         );
         

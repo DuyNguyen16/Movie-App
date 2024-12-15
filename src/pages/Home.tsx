@@ -7,28 +7,30 @@ const API_URL = `http://www.omdbapi.com/?apikey=${apiKey}`;
 const Home = () => {
     const [movie, setMovie] = useState<Movie | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
+    const [error, setError] = useState<string | null>(null);
     const searchMovie = async (movieTitle: string) => {
-    try {
-        setLoading(true);
-        const response = await fetch(`${API_URL}&t=${movieTitle}`);
-        if (!response.ok) throw new Error("Failed to fetch data");
-
-        const data = await response.json();
-
-        if (data.Response === "False") {
-            throw new Error(data.Error);
-        }
-
-        setMovie(data);
+        try {
+            setLoading(true);
+            const response = await fetch(`${API_URL}&t=${movieTitle}`);
+            if (!response.ok) throw new Error("Failed to fetch data");
+    
+            const data = await response.json();
+    
+            if (data.Response === "False") {
+                throw new Error(data.Error);
+            }
+            setMovie(data);
         } catch (err) {
-        setError(err.message);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An unexpected error occurred");
+            }
         } finally {
-        setLoading(false);
+            setLoading(false);
         }
     };
-
+    
     useEffect(() => {
         searchMovie("Batman Begins");
     }, []);

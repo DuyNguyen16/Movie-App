@@ -1,12 +1,14 @@
 import React from 'react';
 import noPosterImage from "../assets/no-poster.jpg";
+import { Movie } from '../types/Types';
 
 // Modal component
-const Modal = ({ object, closeModal }) => {
+const Modal = ({ object, closeModal } : {object : Movie; closeModal: () => void}) => {
   // Function to handle click outside the modal to close it
-    const handleBackdropClick = (err) => {
+    const handleBackdropClick = (err : React.MouseEvent<HTMLElement>) => {
         // Close modal if the click happens outside of the modal content
-        if (err.target.classList.contains('backdrop')) {
+        const target = err.target as HTMLElement
+        if (target.classList.contains('backdrop')) {
             closeModal();
         }
     };
@@ -14,7 +16,7 @@ const Modal = ({ object, closeModal }) => {
     return (
         <div 
             className="backdrop fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 px-10"
-            onClick={handleBackdropClick}  >
+            onClick={handleBackdropClick}>
             <div className="bg-myDark p-6 rounded-md relative">
                 {/* Close button */}
                 <button onClick={closeModal} className="lg:absolute top-2 right-3 text-white font-bold text-xl">X</button>

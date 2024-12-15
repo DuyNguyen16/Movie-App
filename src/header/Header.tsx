@@ -44,7 +44,7 @@ const Header = () => {
                     </div>
 
                     {/* Login button */}
-                    <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-[#333333] font-semibold hover:bg-emerald-700 duration-150">
+                    <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
                         <a className="cursor-pointer">Login/Signup</a>
                     </div>
                 </div>
@@ -68,7 +68,7 @@ const Header = () => {
                             />
                         </li>
                         <li className="py-2">
-                            <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-black font-semibold hover:bg-emerald-700 duration-150">
+                            <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
                                 <a className="cursor-pointer">Login/Signup</a>
                             </div>
                         </li>
