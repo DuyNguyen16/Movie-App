@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
 
 const Header = () => {
@@ -5,6 +6,14 @@ const Header = () => {
     // Toggle state for mobile menu
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const searchMovie = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    }
+
+
+    const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+    }
     return (
         <header className="text-white" id="header">
             <div className="flex bg-myDark shadow-myShadow h-16 items-center px-6 justify-between">
@@ -14,10 +23,10 @@ const Header = () => {
                 
                 {/* Navigation */}
                 <nav className="hidden lg:flex">
-                    <ul className="flex flex-row gap-10">
+                    <ul className="flex flex-row gap-8">
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#movies">Movies</a></li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#genre">Genre</a></li>
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#tv-shows">TV Series</a></li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#genre">Genre</a></li>
                     </ul>
                 </nav>
 
@@ -35,12 +44,15 @@ const Header = () => {
                 <div className="hidden lg:flex items-center gap-4">
                     {/* Input field */}
                     <div className="hidden lg:block">
+                        <form className="" onSubmit={(e) => handleOnSubmit(e)}>
                         <input
                             className="text-black rounded-lg border-0 px-2 h-8 w-64 outline-none"
                             placeholder="Search"
                             value={input}
-                            onChange={(e) => setInput(e.target.value)}
-                        />
+                            onChange={(e) => setInput(e.target.value)}>
+
+                            </input>
+                        </form>
                     </div>
 
                     {/* Login button */}
@@ -56,8 +68,8 @@ const Header = () => {
                 <div className="lg:hidden bg-myDark p-4 absolute top-16 left-0 w-full z-10">
                     <ul>
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2"><a href="#movies">Movies</a></li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">Genre</li>
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2"><a href="#tv-shows">TV Series</a></li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#genre">Genre</a></li>
                         {/* Search Input in mobile view */}
                         <li className="py-2">
                             <input

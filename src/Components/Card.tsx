@@ -30,7 +30,7 @@ const Card = ({ object } : {object : Movie}) => {
         {/* Button */}
         <button
           onClick={openModal}
-          className='bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-[#333333] font-bold mt-auto py-1'
+          className='bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-auto py-1'
         >
           More
         </button>
