@@ -13,6 +13,7 @@ const Header = () => {
 
     const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setInput("");
     }
     return (
         <header className="text-white" id="header">

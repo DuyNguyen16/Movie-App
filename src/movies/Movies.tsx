@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react';
-import { apiKey } from '../../../api/api';
 import Card from '../Components/Card';
 import { Movie } from '../types/Types';
-
-const API_URL = `http://www.omdbapi.com/?apikey=${apiKey}`;
-
+import { API_URL } from '../constant/Constant';
 
 
 const Movies = () => {

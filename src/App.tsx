@@ -1,4 +1,4 @@
-import Home from './pages/Home'
+import Home from './home/Home'
 import Movies from './movies/Movies'
 import Header from './header/Header'
 import TVShows from './tv-show/TVShows'
