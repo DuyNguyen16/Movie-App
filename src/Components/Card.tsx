@@ -1,19 +1,8 @@
-import { useState } from 'react';
-import Modal from './Modal'; // Import the Modal component
 import noPosterImage from "../assets/no-poster.jpg";
 import { Movie } from '../types/Types';
+import { Link } from 'react-router-dom';
 
 const Card = ({ object } : {object : Movie}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true); // Set state to show the modal
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false); // Set state to hide the modal
-  };
-
   return (
     <div key={object.imdbID} className="shadow-myShadow p-4 rounded flex flex-col w-40 md:w-52 lg:w-64">
       {/* Poster */}
@@ -28,16 +17,12 @@ const Card = ({ object } : {object : Movie}) => {
         <p className="text-sm">{object.Year.slice(0, 4)}</p>
         <p className="text-sm pb-2">{object.Genre}</p>
         {/* Button */}
-        <button
-          onClick={openModal}
-          className='bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-auto py-1'
-        >
-          More
-        </button>
+        <Link to={`/${object.Title}`} key={object.imdbID} className="bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-auto py-1">
+          <button className='w-full'>
+            More
+          </button>
+        </Link>
       </div>
-
-      {/* Modal that appears when the button is clicked */}
-      {isModalOpen && <Modal object={object} closeModal={closeModal} />}
     </div>
   );
 };
