@@ -73,7 +73,7 @@ const Movies = () => {
       ) : error ? (
         <div className="flex justify-center text-red-500">{error}</div>
       ) : (
-        <div className="w-full h-fit flex flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
+        <div className="w-full h-fit flex flex-col md:flex-row md:flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
           {movies.map((movie) => (
             <Card object={movie} key={movie.imdbID} />
           ))}

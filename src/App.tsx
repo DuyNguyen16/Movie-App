@@ -1,12 +1,11 @@
 import Home from './home/Home'
 import Movies from './movies/Movies'
-import Header from './header/Header'
+
 import TVShows from './tv-show/TVShows'
 
 const App = () => {
   return (
     <>
-      <Header />
       <main>
         <Home />
         <Movies />
