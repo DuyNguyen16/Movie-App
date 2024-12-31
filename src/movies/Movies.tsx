@@ -23,14 +23,14 @@ const Movies = () => {
       // loop through each page of the response
       for (let page = 1; page <= maxPages; page++) {
         const response = await fetch(`${API_URL}&s=${searchTerm}&y=${year}&page=${page}&type=movie`);
-
+        
         // check if data were able to be fetched
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
 
         const data = await response.json();
-
+        console.log(data)
         // No more results to fetch
         if (data.Response === 'False') {
           break
@@ -39,19 +39,9 @@ const Movies = () => {
         // Filter movies for uniqueness
         allMovies = [...allMovies, ...data.Search];
       }
-
-      // Fetch detailed data for the first 20 movies only
-      const detailedMovies = await Promise.all(
-        allMovies.slice(0, 18).map(async (movie: { imdbID: string }) => {
-          const detailsResponse = await fetch(`${API_URL}&i=${movie.imdbID}`);
-          if (!detailsResponse.ok) throw new Error('Failed to fetch movie details');
-
-          const detailsData = await detailsResponse.json();
-          return detailsData as Movie;
-        })
-      );
       
-      setMovies(detailedMovies);
+      setMovies(allMovies);
+      console.log(allMovies)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
