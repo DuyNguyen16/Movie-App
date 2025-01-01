@@ -30,7 +30,6 @@ const Movies = () => {
         }
 
         const data = await response.json();
-        console.log(data)
         // No more results to fetch
         if (data.Response === 'False') {
           break
@@ -41,7 +40,6 @@ const Movies = () => {
       }
       
       setMovies(allMovies);
-      console.log(allMovies)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error occurred');
     } finally {
