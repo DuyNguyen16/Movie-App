@@ -1,9 +1,9 @@
 import React from 'react';
 import noPosterImage from "../assets/no-poster.jpg";
-import { Movie } from '../types/Types';
+import { Film } from '../types/Types';
 
 // Modal component
-const Modal = ({ object, closeModal } : {object : Movie; closeModal: () => void}) => {
+const Modal = ({ object, closeModal } : {object : Film; closeModal: () => void}) => {
   // Function to handle click outside the modal to close it
     const handleBackdropClick = (err : React.MouseEvent<HTMLElement>) => {
         // Close modal if the click happens outside of the modal content

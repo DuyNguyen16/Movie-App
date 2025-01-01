@@ -1,4 +1,4 @@
-export interface Movie {
+export interface Film {
     Actors: string;
     Awards: string;
     BoxOffice: string;

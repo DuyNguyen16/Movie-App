@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Movie } from "../types/Types";
+import { Film } from "../types/Types";
 import { API_URL } from "../constant/Constant";
 
 const Home = () => {
-    const [movie, setMovie] = useState<Movie | null>(null);
+    const [movie, setMovie] = useState<Film | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const searchMovie = async (movieTitle: string) => {

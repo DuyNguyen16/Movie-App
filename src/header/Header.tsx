@@ -1,84 +1,107 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const Header = () => {
     const [input, setInput] = useState("");
-    // Toggle state for mobile menu
     const [menuOpen, setMenuOpen] = useState(false);
-
-    const searchMovie = async (e: React.FormEvent<HTMLFormElement>) => {
-
-    }
-
+    const navigate = useNavigate();
 
     const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setInput("");
-    }
+        if (input.trim()) {
+            navigate(`/search/${input}`);
+            setInput("");
+        }
+    };
+
     return (
         <header className="text-white" id="header">
             <div className="flex bg-myDark shadow-myShadow h-16 items-center px-6 justify-between">
                 <div>
-                    <a className="text-2xl font-bold cursor-pointer text-emerald-500" href="/">MyMovies</a>
+                    <a
+                        className="text-2xl font-bold cursor-pointer text-emerald-500"
+                        href="/"
+                    >
+                        MyMovies
+                    </a>
                 </div>
-                
-                {/* Navigation */}
+
                 <nav className="hidden lg:flex">
                     <ul className="flex flex-row gap-8">
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#movies">Movies</a></li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#tv-shows">TV Series</a></li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#genre">Genre</a></li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
+                            <HashLink to="/#movies" smooth>
+                                Movies
+                            </HashLink>
+                        </li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
+                            <HashLink to="/#tv-shows" smooth>
+                                TV Series
+                            </HashLink>
+                        </li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
+                            <HashLink to="/#genre" smooth>
+                                Genre
+                            </HashLink>
+                        </li>
                     </ul>
                 </nav>
 
-                {/* Mobile Menu Toggle */}
                 <div className="lg:hidden flex items-center gap-2">
-                    <button 
+                    <button
                         className="text-white text-xl"
-                        onClick={() => setMenuOpen(!menuOpen)} // Toggle mobile menu
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label="Toggle mobile menu"
                     >
                         <i className="fas fa-bars"></i>
                     </button>
                 </div>
 
-                {/* Input & Login Section */}
                 <div className="hidden lg:flex items-center gap-4">
-                    {/* Input field */}
-                    <div className="hidden lg:block">
-                        <form className="" onSubmit={(e) => handleOnSubmit(e)}>
-                        <input
-                            className="text-black rounded-lg border-0 px-2 h-8 w-64 outline-none"
-                            placeholder="Search"
-                            value={input}
-                            onChange={(e) => setInput(e.target.value)}>
-
-                            </input>
+                    <div>
+                        <form onSubmit={handleOnSubmit}>
+                            <input
+                                className="text-black rounded-lg border-0 px-2 h-8 w-64 outline-none"
+                                placeholder="Search"
+                                value={input}
+                                onChange={(e) => setInput(e.target.value)}
+                                aria-label="Search"
+                            />
                         </form>
                     </div>
 
-                    {/* Login button */}
                     <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
                         <a className="cursor-pointer">Login/Signup</a>
                     </div>
                 </div>
             </div>
-            
-            {/* ------------------------------------------------------------------------------------------------------- */}
-            {/* Mobile Menu */}
+
             {menuOpen && (
-                <div className="lg:hidden bg-myDark p-4 absolute top-16 left-0 w-full z-10">
+                <div className="lg:hidden bg-myDark p-4 absolute top-16 left-0 w-full z-20">
                     <ul>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2"><a href="#movies">Movies</a></li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2"><a href="#tv-shows">TV Series</a></li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold"><a href="#genre">Genre</a></li>
-                        {/* Search Input in mobile view */}
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
+                            <HashLink to="/#movies" smooth>
+                                Movies
+                            </HashLink>
+                        </li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
+                            <HashLink to="/#tv-shows" smooth>
+                                TV Series
+                            </HashLink>
+                        </li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
+                            <HashLink to="/#genre" smooth>
+                                Genre
+                            </HashLink>
+                        </li>
                         <li className="py-2">
                             <input
                                 className="text-black rounded-lg border-0 px-2 h-8 w-full outline-none"
                                 placeholder="Search"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
+                                aria-label="Search"
                             />
                         </li>
                         <li className="py-2">
@@ -91,6 +114,6 @@ const Header = () => {
             )}
         </header>
     );
-}
+};
 
 export default Header;

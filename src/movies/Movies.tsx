@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import Card from '../Components/Card';
-import { Movie } from '../types/Types';
+import { Film } from '../types/Types';
 import { API_URL } from '../constant/Constant';
 
 
 const Movies = () => {
-  const [movies, setMovies] = useState<Movie[]>([]); // List of movies
+  const [movies, setMovies] = useState<Film[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +18,7 @@ const Movies = () => {
       const searchTerm = "new";
       const year = 2024;
       const maxPages = 2;
-      let allMovies: Movie[] = [];
+      let allMovies: Film[] = [];
       
       // loop through each page of the response
       for (let page = 1; page <= maxPages; page++) {
@@ -65,7 +65,7 @@ const Movies = () => {
       ) : (
         <div className="w-full h-fit flex flex-col md:flex-row md:flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
           {movies.map((movie) => (
-            <Card object={movie} key={movie.imdbID} />
+            <Card film={movie} key={movie.imdbID} />
           ))}
         </div>
       )}
