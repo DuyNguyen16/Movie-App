@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { auth } from '../../firebase'; // Import Firebase auth
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import googleLogo from '../assets/google-logo.png'
+import { FirebaseError } from 'firebase/app';
 
 const GoogleSignIn = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +28,7 @@ const GoogleSignIn = () => {
             navigate('/');
 
         } catch (error) {
-            console.error('Error during Google sign-in:', error.message);
+            console.log( error instanceof FirebaseError ? error.message :'Error during Google sign-in:');
         } finally {
             setIsLoading(false);
         }

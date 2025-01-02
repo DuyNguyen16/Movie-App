@@ -44,9 +44,9 @@ const ResetPasswordPage = () => {
             <div className="p-6 shadow-myShadow md:w-[32rem] h-[20rem] flex flex-col gap-4">
                 <h1 className="font-bold text-center pb-5 text-2xl">Reset Password</h1>
                 <form className="flex flex-col gap-2" onSubmit={handleOnSubmit}>
-                    <div className="relative text-black">
+                    <div className="relative text-white">
                         <input
-                            className="p-1 rounded-sm w-full text-black pl-8"
+                            className="p-1 rounded-sm w-full bg-[#222222] pl-8 py-2"
                             type="email"
                             placeholder="Enter your email"
                             value={email}
@@ -57,7 +57,7 @@ const ResetPasswordPage = () => {
                     </div>
                     <button
                         type="submit"
-                        className="bg-emerald-500 px-4 rounded-sm h-8 flex justify-center items-center text-white font-semibold hover:bg-emerald-700 duration-150"
+                        className="bg-emerald-500 px-4 rounded-sm h-10 flex justify-center items-center text-white font-semibold hover:bg-emerald-700 duration-150"
                         disabled={isLoading}
                     >
                         {isLoading ? "Sending..." : "Send Reset Link"}
