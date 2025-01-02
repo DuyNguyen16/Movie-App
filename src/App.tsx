@@ -2,6 +2,7 @@ import Home from "./Pages/home/Home";
 import Movies from "./Pages/movies/Movies";
 import TVShows from "./Pages/tv-show/TVShows";
 
+
 const App = () => {
   return (
     <>

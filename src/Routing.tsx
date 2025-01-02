@@ -6,20 +6,52 @@ import SearchedFilm from "./Pages/searchFilm/SearchedFilm";
 import Footer from "./Components/Footer/Footer";
 import LoginPage from "./userPage/LoginPage";
 import SignUpPage from "./userPage/SignUpPage";
+import { useEffect, useState } from "react";
+import { auth } from "../firebase";
+import { mainContext } from "./constant/Constant";
+import { User, onAuthStateChanged } from "firebase/auth";  // Import the listener
+import Bookmark from "./Pages/bookmark/Bookmark";
+import ResetPasswordPage from "./userPage/ResetPasswordPage";
 
 const Routing = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    // Set up the Firebase authentication state listener
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser); // User is logged in
+        console.log('User logged in:', currentUser.email);
+      } else {
+        setUser(null); // No user is logged in
+        console.log('User logged out'); 
+      }
+    });
+
+    // Clean up the listener when the component unmounts
+    return () => unsubscribe();
+  }, []);
+
+  const context = {
+    user,
+  };
+
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/user/login" element={<LoginPage />}/>
-        <Route path="user/SignUp" element={<SignUpPage />}/>
-        <Route path="/:name" element={<AboutFilm />} />
-        <Route path="/search/:filmName" element={<SearchedFilm />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <mainContext.Provider value={context}>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/user/login" element={<LoginPage />} />
+          <Route path="user/signup" element={<SignUpPage />} />
+          <Route path="/:name" element={<AboutFilm />} />
+          <Route path="/search/:filmName" element={<SearchedFilm />} />
+          <Route path="/bookmark/:uid" element={<Bookmark />}></Route>
+          <Route path="/user/resetPassword" element={<ResetPasswordPage />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </mainContext.Provider>
   );
 };
 

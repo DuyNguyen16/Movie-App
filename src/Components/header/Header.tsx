@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import { mainContext } from "../../constant/Constant";
+import Logout from "../../userPage/Logout";
 
 const Header = () => {
+    const context = useContext(mainContext);
     const [input, setInput] = useState("");
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
@@ -19,7 +22,7 @@ const Header = () => {
     const handleSearchClick = () => {
         if (input.trim()) {
             navigate(`/search/${input}`);
-            setInput(""); // Clear the input after search
+            setInput(""); 
         }
     };
 
@@ -50,7 +53,8 @@ const Header = () => {
                     </ul>
                 </nav>
 
-                <div className="lg:hidden flex items-center gap-2">
+                <div className="lg:hidden flex items-center gap-5">
+                {context.user?.email == null ? <></> :<Logout />}
                     <button
                         className="text-white text-xl"
                         onClick={() => setMenuOpen(!menuOpen)}
@@ -79,10 +83,16 @@ const Header = () => {
                             </button>
                         </form>
                     </div>
+                    {context.user?.email == null ? (
+                        <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
+                            <Link to="/user/Login">
+                                <span className="cursor-pointer">Login/Signup</span>
+                            </Link>
+                        </div>
+                    ) : (
+                        <Logout />
+                    )}
 
-                    <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
-                        <Link to={'/user/Login'}><a className="cursor-pointer">Login/Signup</a></Link>
-                    </div>
                 </div>
             </div>
 
@@ -120,9 +130,15 @@ const Header = () => {
                             </div>
                         </li>
                         <li className="py-2">
-                            <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
-                            <Link to={'/Login'}><a className="cursor-pointer">Login/Signup</a></Link>
-                            </div>
+                        {context.user?.email == null ? (
+                        <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
+                            <Link to="/user/Login">
+                                <span className="cursor-pointer">Login/Signup</span>
+                            </Link>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                         </li>
                     </ul>
                 </div>

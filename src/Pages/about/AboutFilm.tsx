@@ -1,16 +1,19 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Film } from "../../types/Types";
-import { API_URL } from "../../constant/Constant";
-import { useEffect, useState } from "react";
+import { API_URL, mainContext } from "../../constant/Constant";
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const AboutFilm = () => {
+  const context = useContext(mainContext);
   const { name } = useParams();
   const [film, setFilm] = useState<Film | null>(null); // Single movie
   const [error, setError] = useState<string | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const navigate = useNavigate();
 
-  const fetchMovieDetailed = async () => {
+  const fetchMovieDetailed = useCallback(async () => {
     try {
       setError(null); // Clear any previous errors
 
@@ -29,13 +32,19 @@ const AboutFilm = () => {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error occurred");
     }
-  };
+  }, [name]); // Dependencies of the fetch logic
 
   useEffect(() => {
     if (name) {
       fetchMovieDetailed();
     }
-  }, [name]);
+  }, [name, fetchMovieDetailed]);
+
+  const handleBookmark = () => {
+    if (context.user?.email == null) {
+      setShowPopup(true);
+    }
+  };
 
   return (
     <section className="">
@@ -114,12 +123,40 @@ const AboutFilm = () => {
                 <span className="font-bold">Plot:</span>{" "}
                 {film.Plot || "No plot available"}
               </p>
-              <button
-                onClick={() => navigate(-1)}
-                className="bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-4 py-2 flex justify-center"
-              >
-                Back
-              </button>
+              <div className="flex w-full">
+                <button
+                  onClick={() => navigate(-1)}
+                  className="bg-emerald-600 rounded-md hover:bg-emerald-800 duration-150 text-white font-bold mt-4 py-2 flex justify-center items-center"
+                  style={{ flex: 8 }}
+                >
+                  Back
+                </button>
+                <button
+                  onClick={() => handleBookmark()}
+                  className="bg-orange-500 hover:bg-orange-700 duration-150 rounded-md mt-4 ml-2 flex justify-center items-center"
+                  style={{ flex: 2 }}
+                >
+                  <i className="fa regular fa-bookmark"></i>
+                </button>
+
+                {/* Popup Message */}
+                {showPopup && (
+                  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-[#1C1C20] rounded-lg py-16 w-3/4 max-w-sm text-center">
+                      <p className="text-xl">Please Sign In to bookmark</p>
+                      <div className="flex gap-2 justify-center pt-10">
+                        <button
+                          onClick={() => setShowPopup(false)} // Close the popup
+                          className="bg-[#4A90E2] hover:bg-[#357ABD] px-4 py-2 rounded-sm duration-150"
+                        >
+                          OK
+                        </button>
+                        <Link to={"/user/login"} className="bg-emerald-500 hover:bg-emerald-700 px-4 py-2 rounded-sm duration-150">Sign in</Link>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ) : (

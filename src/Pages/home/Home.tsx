@@ -58,7 +58,7 @@ const Home = () => {
                 className="w-full h-full object-contain"
                 />
                 {/* Text Overlay */}
-                <div className="absolute bottom-8 left-6 bg-black bg-opacity-70 px-4 py-2 rounded max-w-lg">
+                <div className="absolute bottom-8 md:left-6 bg-black bg-opacity-70 px-4 mx-4 md:mx-0 py-2 rounded max-w-lg">
                 <h1 className="text-3xl font-bold pb-2">{movie.Title}</h1>
                 <div className="flex gap-8 items-center pb-2">
                     <p className="text-lg bg-emerald-600 font-bold px-2 rounded-lg">
