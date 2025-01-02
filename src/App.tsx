@@ -1,7 +1,6 @@
-import Home from "./home/Home";
-import Movies from "./movies/Movies";
-
-import TVShows from "./tv-show/TVShows";
+import Home from "./Pages/home/Home";
+import Movies from "./Pages/movies/Movies";
+import TVShows from "./Pages/tv-show/TVShows";
 
 const App = () => {
   return (

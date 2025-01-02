@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Film } from "../types/Types";
-import { API_URL } from "../constant/Constant";
+import { Film } from "../../types/Types";
+import { API_URL } from "../../constant/Constant";
 
 const Home = () => {
     const [movie, setMovie] = useState<Film | null>(null);

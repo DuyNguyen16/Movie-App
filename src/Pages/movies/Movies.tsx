@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Card from '../Components/Card';
-import { Film } from '../types/Types';
-import { API_URL } from '../constant/Constant';
+import Card from '../../Components/Card';
+import { Film } from '../../types/Types';
+import { API_URL } from '../../constant/Constant';
 
 
 const Movies = () => {

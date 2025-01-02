@@ -15,6 +15,13 @@ const Header = () => {
         }
     };
 
+    const handleSearchClick = () => {
+        if (input.trim()) {
+            navigate(`/search/${input}`);
+            setInput(""); // Clear the input after search
+        }
+    };
+
     return (
         <header className="text-white" id="header">
             <div className="flex bg-myDark shadow-myShadow h-16 items-center px-6 justify-between">
@@ -39,11 +46,6 @@ const Header = () => {
                                 TV Series
                             </HashLink>
                         </li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
-                            <HashLink to="/#genre" smooth>
-                                Genre
-                            </HashLink>
-                        </li>
                     </ul>
                 </nav>
 
@@ -58,7 +60,7 @@ const Header = () => {
                 </div>
 
                 <div className="hidden lg:flex items-center gap-4">
-                    <div>
+                    <div className="relative">
                         <form onSubmit={handleOnSubmit}>
                             <input
                                 className="text-black rounded-lg border-0 px-2 h-8 w-64 outline-none"
@@ -67,6 +69,13 @@ const Header = () => {
                                 onChange={(e) => setInput(e.target.value)}
                                 aria-label="Search"
                             />
+                            <button
+                                onClick={handleSearchClick}
+                                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-emerald-500"
+                                aria-label="Search"
+                            >
+                                <i className="fas fa-search"></i>
+                            </button>
                         </form>
                     </div>
 
@@ -89,19 +98,25 @@ const Header = () => {
                                 TV Series
                             </HashLink>
                         </li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
-                            <HashLink to="/#genre" smooth>
-                                Genre
-                            </HashLink>
-                        </li>
                         <li className="py-2">
-                            <input
-                                className="text-black rounded-lg border-0 px-2 h-8 w-full outline-none"
-                                placeholder="Search"
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                aria-label="Search"
-                            />
+                            <div className="relative">
+                                <form onSubmit={handleOnSubmit}>
+                                    <input
+                                        className="text-black rounded-lg border-0 px-2 h-8 w-full outline-none"
+                                        placeholder="Search"
+                                        value={input}
+                                        onChange={(e) => setInput(e.target.value)}
+                                        aria-label="Search"
+                                    />
+                                    <button
+                                        onClick={handleSearchClick}
+                                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-emerald-500"
+                                        aria-label="Search"
+                                    >
+                                        <i className="fas fa-search"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </li>
                         <li className="py-2">
                             <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">

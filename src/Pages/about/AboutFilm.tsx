@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Film } from "../types/Types";
-import { API_URL } from "../constant/Constant";
+import { Film } from "../../types/Types";
+import { API_URL } from "../../constant/Constant";
 import { useEffect, useState } from "react";
 
 const AboutFilm = () => {
@@ -38,7 +38,7 @@ const AboutFilm = () => {
   }, [name]);
 
   return (
-    <section className="h-screen">
+    <section className="">
       <div className="">
         {error ? (
           <p className="text-red-500">{error}</p>
@@ -84,28 +84,35 @@ const AboutFilm = () => {
                 </div>
               </div>
               <p>
-                <span className="font-bold">Released:</span> {film.Released || "N/A"}
+                <span className="font-bold">Released:</span>{" "}
+                {film.Released || "N/A"}
               </p>
               <p>
-                <span className="font-bold">Runtime:</span> {film.Runtime || "N/A"}
+                <span className="font-bold">Runtime:</span>{" "}
+                {film.Runtime || "N/A"}
               </p>
               <p>
                 <span className="font-bold">Genre:</span> {film.Genre || "N/A"}
               </p>
               <p>
-                <span className="font-bold">Director:</span> {film.Director || "N/A"}
+                <span className="font-bold">Director:</span>{" "}
+                {film.Director || "N/A"}
               </p>
               <p>
-                <span className="font-bold">Actors:</span> {film.Actors || "N/A"}
+                <span className="font-bold">Actors:</span>{" "}
+                {film.Actors || "N/A"}
               </p>
               <p>
-                <span className="font-bold">Country:</span> {film.Country || "N/A"}
+                <span className="font-bold">Country:</span>{" "}
+                {film.Country || "N/A"}
               </p>
               <p>
-                <span className="font-bold">Langauge:</span> {film.Language || "N/A"}
+                <span className="font-bold">Langauge:</span>{" "}
+                {film.Language || "N/A"}
               </p>
               <p className="md:w-[34rem]">
-                <span className="font-bold">Plot:</span> {film.Plot || "No plot available"}
+                <span className="font-bold">Plot:</span>{" "}
+                {film.Plot || "No plot available"}
               </p>
               <button
                 onClick={() => navigate(-1)}
