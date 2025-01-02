@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
@@ -80,7 +81,7 @@ const Header = () => {
                     </div>
 
                     <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
-                        <a className="cursor-pointer">Login/Signup</a>
+                        <Link to={'/user/Login'}><a className="cursor-pointer">Login/Signup</a></Link>
                     </div>
                 </div>
             </div>
@@ -120,7 +121,7 @@ const Header = () => {
                         </li>
                         <li className="py-2">
                             <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
-                                <a className="cursor-pointer">Login/Signup</a>
+                            <Link to={'/Login'}><a className="cursor-pointer">Login/Signup</a></Link>
                             </div>
                         </li>
                     </ul>
