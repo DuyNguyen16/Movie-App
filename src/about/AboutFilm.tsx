@@ -38,8 +38,8 @@ const AboutFilm = () => {
   }, [name]);
 
   return (
-    <div>
-      <div>
+    <section className="h-screen">
+      <div className="">
         {error ? (
           <p className="text-red-500">{error}</p>
         ) : film ? (
@@ -119,7 +119,7 @@ const AboutFilm = () => {
           <p>Loading...</p>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 
