@@ -1,50 +1,37 @@
-# React + TypeScript + Vite
+# Movie App - React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a movie application built using **React**, **TypeScript**, and **Vite**. It allows users to **sign up** and **login** to view movie details, and **bookmark** their favorite movies. The app fetches movie data from **OMDb API** and **YouTube Data API v3**, and stores user information and bookmarks in **Firebase Firestore**.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User authentication using Firebase (Sign Up / Login)
+- Search and view detailed movie information
+- Bookmark favorite movies for later access
+- Movie data fetched from OMDb API
+- YouTube trailers fetched using YouTube Data API v3
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**: React, TypeScript, Vite
+- **Authentication**: Firebase Authentication
+- **Database**: Firebase Firestore
+- **APIs**:
+  - OMDb API (for movie details)
+  - YouTube Data API v3 (for movie trailers)
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+### Prerequisites
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Vite](https://vitejs.dev/) (for development)
+- Firebase account for Firestore and Authentication
+- OMDb API key (You can get it from [OMDb API](https://www.omdbapi.com/))
+- YouTube Data API v3 key (You can get it from [Google Developers Console](https://console.developers.google.com/))
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Setup
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+1. Clone this repository:
+
+   ```bash
+   git clone https://github.com/DuyNguyen16/Movie-App.git
