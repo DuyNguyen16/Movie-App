@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { mainContext } from "../../constant/Constant";
-import UserProfile from "../../UserPage/UserProfile";
+import UserProfile from "../../userPage/UserProfile";
 
 const Header = () => {
     const context = useContext(mainContext);

@@ -13,6 +13,10 @@ export default {
         myShadow: "0 0.2px 5px 0.2px #333333",
 
       },
+      screens: {
+        myScreen: '1700px',
+        myScreenTwo: '1550px',
+      }
     },
   },
   plugins: [],

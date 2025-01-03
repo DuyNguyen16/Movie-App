@@ -7,13 +7,13 @@ const Card = ({ film }: { film: Film }) => {
   return (
     <div
       key={film.imdbID}
-      className="shadow-myShadow p-4 rounded flex flex-row md:flex-col md:w-52 lg:w-56 gap-4 md:gap-0"
+      className="shadow-myShadow p-4 rounded flex flex-col w-44 lg:w-56 gap-4 md:gap-0"
     >
       {/* Poster */}
       <img
         src={film.Poster === "N/A" ? noPosterImage : film.Poster}
         alt={film.Title}
-        className="w-32 md:w-full md:h-56 lg:h-64 film-cover rounded"
+        className="w-full md:h-56 lg:h-64 film-cover rounded"
       />
       {/* Overlay with Title and Year */}
       <div className="mt-2 text-white flex flex-col flex-grow">

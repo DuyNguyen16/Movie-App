@@ -49,7 +49,7 @@ const Footer = () => {
                         href="https://www.omdbapi.com/"
                         className="text-blue-400 hover:underline"
                     >
-                        OMDb API
+                        OMDb API, Youtube Data API V3
                     </a>
                     .
                 </p>
