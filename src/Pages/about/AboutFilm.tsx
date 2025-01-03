@@ -6,6 +6,7 @@ import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { toast } from "react-toastify";
 import { YOUTUBE_DATA_API } from "../../../../api/api";
+import LoginModal from "../../Components/LoginModal";
 
 const AboutFilm = () => {
   const context = useContext(mainContext);
@@ -14,6 +15,7 @@ const AboutFilm = () => {
   const [error, setError] = useState<string | null>(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
+  const [showLoginModal, setShowLoginModal] = useState(false); // State for modal visibility
   const navigate = useNavigate();
 
   const checkIfBookmarked = useCallback(
@@ -78,7 +80,7 @@ const AboutFilm = () => {
 
   const handleBookmark = async () => {
     if (!context.user?.email || !film) {
-      toast.error("Error occurred");
+      setShowLoginModal(true); // Show the modal if the user is not logged in
       return;
     }
 
@@ -124,6 +126,10 @@ const AboutFilm = () => {
       console.error("Error removing bookmark:", err);
       toast.error("Failed to remove the bookmark. Please try again.");
     }
+  };
+
+  const handleCloseModal = () => {
+    setShowLoginModal(false); // Close the modal
   };
 
   return (
@@ -250,6 +256,11 @@ const AboutFilm = () => {
           <p>Loading...</p>
         )}
       </div>
+
+      {/* Conditionally render the LoginModal */}
+      {showLoginModal && (
+        <LoginModal onClose={handleCloseModal} />
+      )}
     </section>
   );
 };

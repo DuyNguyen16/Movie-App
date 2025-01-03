@@ -144,7 +144,7 @@ const searchMovies = async (movieTitle: string) => {
                                 <p className="font-semibold pb-2">Director: {movies[currentIndex].Director}</p>
                             </div>
                             <div className="flex">
-                                <Link to={`/about/${movies[currentIndex].Title}`} className="px-10 py-2 bg-emerald-500 rounded-sm font-semibold">More</Link>
+                                <Link to={`/about/${movies[currentIndex].Title}`} className="px-10 py-2 bg-emerald-500 hover:bg-emerald-700 duration-150 rounded-sm font-semibold">More</Link>
                             </div>
                         </div>
                     </div>
