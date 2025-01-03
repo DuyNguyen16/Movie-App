@@ -13,13 +13,13 @@ const Card = ({ film }: { film: Film }) => {
       <img
         src={film.Poster === "N/A" ? noPosterImage : film.Poster}
         alt={film.Title}
-        className="w-full md:h-56 lg:h-64 film-cover rounded"
+        className="w-full h-56 lg:h-64 film-cover rounded"
       />
       {/* Overlay with Title and Year */}
       <div className="mt-2 text-white flex flex-col flex-grow">
         <h2 className="text-md lg:text-sm font-bold pb-1">{film.Title}</h2>
         <div className="flex-grow"></div> {/* Spacer pushes content below */}
-        <div className="md:flex md:justify-between pb-1">
+        <div className="flex justify-between pb-1">
           <p className="text-md">{year}</p>
           <p className="border rounded-md px-1">{film.Type}</p>
         </div>

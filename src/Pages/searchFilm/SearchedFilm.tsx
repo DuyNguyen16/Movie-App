@@ -66,7 +66,7 @@ const SearchedFilm = () => {
         ) : film.length === 0 ? (
           <div className="flex justify-center text-red-500">Could not find any film called '{filmName}'!</div>
         ) : (
-          <div className="w-full h-fit flex flex-col md:flex-row md:flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
+          <div className="w-full h-fit flex flex-row flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
             {film.map((film) => (
               <Card film={film} key={film.imdbID} />
             ))}

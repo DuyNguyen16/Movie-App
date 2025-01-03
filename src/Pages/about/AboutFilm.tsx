@@ -136,7 +136,7 @@ const AboutFilm = () => {
     <section className="lg:h-screen mb-12 myScreenTwo:mb-0" id="aboutFilm">
       <div className="flex flex-col myScreenTwo:flex-row shadow-myShadow">
         {error ? (
-          <p className="text-red-500">{error}</p>
+          <p className="text-red-500 flex h-screen justify-center w-full items-center">{error}</p>
         ) : film ? (
           <>
             <div className="p-6 shadow-sm flex flex-col md:flex-row gap-5 items-center md:items-start px-9 text-wrap">
@@ -253,7 +253,7 @@ const AboutFilm = () => {
             </div>
           </>
         ) : (
-          <p>Loading...</p>
+          <p className="h-screen flex justify-center items-center w-full">Loading...</p>
         )}
       </div>
 

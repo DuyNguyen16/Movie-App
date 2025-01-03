@@ -50,9 +50,9 @@ const Header = () => {
                             </HashLink>
                         </li>
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
-                            <HashLink to={`/bookmark/${context.user?.uid}`} smooth>
+                            <Link to={`/bookmark/${context.user?.uid}`}>
                                 Bookmarks
-                            </HashLink>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
@@ -140,11 +140,9 @@ const Header = () => {
                         </li>
                         <li className="py-2">
                         {context.user?.email == null ? (
-                        <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
-                            <Link to="/user/Login">
-                                <span className="cursor-pointer">Login/Signup</span>
-                            </Link>
-                        </div>
+                        <Link to="/user/Login" className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
+                                Login/Signup
+                        </Link>
                     ) : (
                         <></>
                     )}
