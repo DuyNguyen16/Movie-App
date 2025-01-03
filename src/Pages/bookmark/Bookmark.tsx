@@ -4,6 +4,7 @@ import { db } from "../../../firebase";
 import { useContext, useEffect, useState } from "react";
 import { mainContext } from "../../constant/Constant";
 import Card from "../../Components/Card";
+import { Link } from "react-router-dom";
 
 const Bookmark = () => {
   const context = useContext(mainContext);
@@ -52,7 +53,7 @@ const Bookmark = () => {
       <div className="flex justify-center pt-8">
         <h1 className="font-bold text-4xl text-emerald-600"> My Bookmarks</h1>
       </div>
-      {context.user?.email == null ? <div className="flex justify-center h-screen pt-32 text-xl">Please login to view your bookmarks</div> : loading ? (
+      {context.user?.email == null ? <div className="flex justify-center h-screen pt-32 text-xl"><div className="flex flex-col gap-3">Please login to view your bookmarks<Link className=" text-md text-gray-400 flex justify-center items-center gap-2 hover:text-gray-600" to={"/user/login"}>Go to login <i className="fa solid fa-arrow-right"></i></Link></div></div> : loading ? (
         <div className="flex justify-center h-screen">Loading...</div>
       ) : error ? (
         <div className="flex justify-center text-red-500">{error}</div>
