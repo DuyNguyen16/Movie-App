@@ -3,6 +3,9 @@ import { Film } from "../../types/Types";
 import { API_URL, mainContext } from "../../constant/Constant";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebase";
+import { toast } from "react-toastify";
 
 const AboutFilm = () => {
   const context = useContext(mainContext);
@@ -10,6 +13,7 @@ const AboutFilm = () => {
   const [film, setFilm] = useState<Film | null>(null); // Single movie
   const [error, setError] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false); // Track if movie is bookmarked
 
   const navigate = useNavigate();
 
@@ -29,6 +33,7 @@ const AboutFilm = () => {
       }
 
       setFilm(data as Film); // Update state with the movie details
+      checkIfBookmarked(data); // Check if it's already bookmarked
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error occurred");
     }
@@ -40,9 +45,66 @@ const AboutFilm = () => {
     }
   }, [name, fetchMovieDetailed]);
 
-  const handleBookmark = () => {
-    if (context.user?.email == null) {
+  // Check if the film is already bookmarked by the user
+  const checkIfBookmarked = async (film: Film) => {
+    if (context.user?.email) {
+      const bookmarkRef = doc(db, "bookmarks", `${context.user.email}-${film.Title}`);
+      const bookmarkDoc = await getDoc(bookmarkRef);
+      setIsBookmarked(bookmarkDoc.exists());
+    }
+  };
+
+  // Add bookmark
+  const handleBookmark = async () => {
+    if (!context.user?.email) {
       setShowPopup(true);
+      return;
+    }
+
+    if (film) {
+      try {
+        // Reference to the user's bookmarks collection
+        const bookmarkRef = doc(db, "bookmarks", `${context.user.email}-${film.Title}`);
+
+        // Save the movie details to Firestore
+        await setDoc(bookmarkRef, {
+          title: film.Title,
+          poster: film.Poster || "No poster available",
+          type: film.Type || "N/A",
+          year: film.Year || "N/A",
+          user: context.user.email,
+        });
+
+        setIsBookmarked(true); // Update the state
+        toast.success(`Bookmarked: ${film.Title}`);
+      } catch (err) {
+        console.error("Error saving bookmark:", err);
+        toast.error("Failed to bookmark the movie. Please try again.");
+      }
+    }
+  };
+
+  // Remove bookmark
+  const handleRemoveBookmark = async () => {
+    if (!context.user?.email) {
+      setShowPopup(true);
+      return;
+    }
+
+    if (film) {
+      try {
+        // Reference to the user's bookmarks collection
+        const bookmarkRef = doc(db, "bookmarks", `${context.user.email}-${film.Title}`);
+
+        // Delete the bookmark from Firestore
+        await deleteDoc(bookmarkRef);
+
+        setIsBookmarked(false); // Update the state
+        toast.info(`Removed Bookmark: ${film.Title}`);
+      } catch (err) {
+        console.error("Error removing bookmark:", err);
+        toast.error("Failed to remove the bookmark. Please try again.");
+      }
     }
   };
 
@@ -116,7 +178,7 @@ const AboutFilm = () => {
                 {film.Country || "N/A"}
               </p>
               <p>
-                <span className="font-bold">Langauge:</span>{" "}
+                <span className="font-bold">Language:</span>{" "}
                 {film.Language || "N/A"}
               </p>
               <p className="md:w-[34rem]">
@@ -131,13 +193,25 @@ const AboutFilm = () => {
                 >
                   Back
                 </button>
-                <button
-                  onClick={() => handleBookmark()}
-                  className="bg-orange-500 hover:bg-orange-700 duration-150 rounded-md mt-4 ml-2 flex justify-center items-center"
-                  style={{ flex: 2 }}
-                >
-                  <i className="fa regular fa-bookmark"></i>
-                </button>
+
+                {/* Conditional Bookmark/Remove Bookmark Button */}
+                {!isBookmarked ? (
+                  <button
+                    onClick={handleBookmark}
+                    className="bg-orange-500 hover:bg-orange-700 duration-150 rounded-md mt-4 ml-2 flex justify-center items-center"
+                    style={{ flex: 2}}
+                  >
+                    <i className="fa regular fa-bookmark"></i>
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleRemoveBookmark}
+                    className="bg-red-500 hover:bg-red-700 duration-150 rounded-md mt-4 ml-2 flex justify-center items-center"
+                    style={{ flex: 2}}
+                  >
+                    <i className="fa solid fa-trash"></i>
+                  </button>
+                )}
 
                 {/* Popup Message */}
                 {showPopup && (

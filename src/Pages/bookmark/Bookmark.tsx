@@ -1,7 +1,7 @@
 
 const Bookmark = () => {
   return (
-    <div>Bookmark</div>
+    <section>Bookmark</section>
   )
 }
 

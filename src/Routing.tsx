@@ -9,9 +9,11 @@ import SignUpPage from "./userPage/SignUpPage";
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import { mainContext } from "./constant/Constant";
-import { User, onAuthStateChanged } from "firebase/auth";  // Import the listener
+import { User, onAuthStateChanged } from "firebase/auth"; 
 import Bookmark from "./Pages/bookmark/Bookmark";
 import ResetPasswordPage from "./userPage/ResetPasswordPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Importing the CSS
 
 const Routing = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -39,6 +41,7 @@ const Routing = () => {
   return (
     <mainContext.Provider value={context}>
       <BrowserRouter>
+        <ToastContainer className="pt-2 md:pt-14" position="top-right" autoClose={5000} />
         <Header />
         <Routes>
           <Route path="/" element={<App />} />
