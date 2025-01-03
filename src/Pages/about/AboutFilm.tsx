@@ -16,13 +16,20 @@ const AboutFilm = () => {
   const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const checkIfBookmarked = useCallback(async (film: Film) => {
-    if (context.user?.email) {
-      const bookmarkRef = doc(db, "bookmarks", `${context.user.email}-${film.Title}`);
-      const bookmarkDoc = await getDoc(bookmarkRef);
-      setIsBookmarked(bookmarkDoc.exists());
-    }
-  }, [context.user?.email]);
+  const checkIfBookmarked = useCallback(
+    async (film: Film) => {
+      if (context.user?.email) {
+        const bookmarkRef = doc(
+          db,
+          "bookmarks",
+          `${context.user.email}-${film.Title}`
+        );
+        const bookmarkDoc = await getDoc(bookmarkRef);
+        setIsBookmarked(bookmarkDoc.exists());
+      }
+    },
+    [context.user?.email]
+  );
 
   const fetchMovieDetailed = useCallback(async () => {
     try {
@@ -31,7 +38,8 @@ const AboutFilm = () => {
       if (!response.ok) throw new Error("Failed to fetch movie details");
 
       const data = await response.json();
-      if (data.Response === "False") throw new Error(data.Error || "Movie not found");
+      if (data.Response === "False")
+        throw new Error(data.Error || "Movie not found");
 
       setFilm(data as Film);
       checkIfBookmarked(data);
@@ -51,13 +59,17 @@ const AboutFilm = () => {
   const fetchYouTubeTrailer = useCallback(async (film: Film) => {
     const apiKey = YOUTUBE_DATA_API;
     const searchQuery = `${film.Title} official trailer`;
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&key=${apiKey}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+      searchQuery
+    )}&type=video&key=${apiKey}`;
 
     try {
       const response = await fetch(url);
       const data = await response.json();
       const videoId = data.items?.[0]?.id?.videoId;
-      setTrailerUrl(videoId ? `https://www.youtube.com/embed/${videoId}` : null);
+      setTrailerUrl(
+        videoId ? `https://www.youtube.com/embed/${videoId}` : null
+      );
     } catch (error) {
       console.error("Error fetching YouTube trailer:", error);
       setTrailerUrl(null);
@@ -71,7 +83,11 @@ const AboutFilm = () => {
     }
 
     try {
-      const bookmarkRef = doc(db, "bookmarks", `${context.user.email}-${film.Title}`);
+      const bookmarkRef = doc(
+        db,
+        "bookmarks",
+        `${context.user.email}-${film.Title}`
+      );
       await setDoc(bookmarkRef, {
         Title: film.Title,
         Poster: film.Poster || "No poster available",
@@ -95,7 +111,11 @@ const AboutFilm = () => {
     }
 
     try {
-      const bookmarkRef = doc(db, "bookmarks", `${context.user.email}-${film.Title}`);
+      const bookmarkRef = doc(
+        db,
+        "bookmarks",
+        `${context.user.email}-${film.Title}`
+      );
       await deleteDoc(bookmarkRef);
 
       setIsBookmarked(false);
@@ -149,28 +169,36 @@ const AboutFilm = () => {
                   </div>
                 </div>
                 <p>
-                  <span className="font-bold">Released:</span> {film.Released || "N/A"}
+                  <span className="font-bold">Released:</span>{" "}
+                  {film.Released || "N/A"}
                 </p>
                 <p>
-                  <span className="font-bold">Runtime:</span> {film.Runtime || "N/A"}
+                  <span className="font-bold">Runtime:</span>{" "}
+                  {film.Runtime || "N/A"}
                 </p>
                 <p>
-                  <span className="font-bold">Genre:</span> {film.Genre || "N/A"}
+                  <span className="font-bold">Genre:</span>{" "}
+                  {film.Genre || "N/A"}
                 </p>
                 <p>
-                  <span className="font-bold">Director:</span> {film.Director || "N/A"}
+                  <span className="font-bold">Director:</span>{" "}
+                  {film.Director || "N/A"}
                 </p>
                 <p>
-                  <span className="font-bold">Actors:</span> {film.Actors || "N/A"}
+                  <span className="font-bold">Actors:</span>{" "}
+                  {film.Actors || "N/A"}
                 </p>
                 <p>
-                  <span className="font-bold">Country:</span> {film.Country || "N/A"}
+                  <span className="font-bold">Country:</span>{" "}
+                  {film.Country || "N/A"}
                 </p>
                 <p>
-                  <span className="font-bold">Language:</span> {film.Language || "N/A"}
+                  <span className="font-bold">Language:</span>{" "}
+                  {film.Language || "N/A"}
                 </p>
                 <p className="md:w-[34rem]">
-                  <span className="font-bold">Plot:</span> {film.Plot || "No plot available"}
+                  <span className="font-bold">Plot:</span>{" "}
+                  {film.Plot || "No plot available"}
                 </p>
                 <div className="flex w-full">
                   <button
@@ -212,7 +240,9 @@ const AboutFilm = () => {
                   className="shadow-myShadow md:h-[350px] md:w-[600px] myScreen:w-[760px] myScreen:h-[400px]"
                 ></iframe>
               ) : (
-                <p className="shadow-myShadow h-[200px] w-full md:h-[350px] md:w-[600px] myScreen:w-[760px] myScreen:h-[400px] flex justify-center items-center ">No trailer available</p>
+                <p className="shadow-myShadow h-[200px] w-full md:h-[350px] md:w-[600px] myScreen:w-[760px] myScreen:h-[400px] flex justify-center items-center ">
+                  No trailer available
+                </p>
               )}
             </div>
           </>
