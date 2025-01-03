@@ -37,11 +37,12 @@ const AboutFilm = () => {
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error occurred");
     }
-  }, [name]); // Dependencies of the fetch logic
+  }, [name]);
 
   useEffect(() => {
     if (name) {
       fetchMovieDetailed();
+      window.scrollTo(0, 0);
     }
   }, [name, fetchMovieDetailed]);
 
@@ -68,10 +69,10 @@ const AboutFilm = () => {
 
         // Save the movie details to Firestore
         await setDoc(bookmarkRef, {
-          title: film.Title,
-          poster: film.Poster || "No poster available",
-          type: film.Type || "N/A",
-          year: film.Year || "N/A",
+          Title: film.Title,
+          Poster: film.Poster || "No poster available",
+          Type: film.Type || "N/A",
+          Year: film.Year || "N/A",
           user: context.user.email,
         });
 
@@ -109,7 +110,7 @@ const AboutFilm = () => {
   };
 
   return (
-    <section className="">
+    <section className="h-screen" id="aboutFilm">
       <div className="">
         {error ? (
           <p className="text-red-500">{error}</p>

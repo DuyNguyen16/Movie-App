@@ -30,12 +30,11 @@ const Header = () => {
         <header className="text-white" id="header">
             <div className="flex bg-myDark shadow-myShadow h-16 items-center px-6 justify-between">
                 <div>
-                    <a
+                    <Link to={"/"}
                         className="text-2xl font-bold cursor-pointer text-emerald-500"
-                        href="/"
                     >
                         MyMovies
-                    </a>
+                    </Link>
                 </div>
 
                 <nav className="hidden lg:flex">
@@ -48,6 +47,11 @@ const Header = () => {
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
                             <HashLink to="/#tv-shows" smooth>
                                 TV Series
+                            </HashLink>
+                        </li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
+                            <HashLink to={`/bookmark/${context.user?.uid}`} smooth>
+                                Bookmarks
                             </HashLink>
                         </li>
                     </ul>
@@ -107,6 +111,11 @@ const Header = () => {
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
                             <HashLink to="/#tv-shows" smooth>
                                 TV Series
+                            </HashLink>
+                        </li>
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
+                            <HashLink to={`/bookmark/${context.user?.uid}`} smooth>
+                                Bookmarks
                             </HashLink>
                         </li>
                         <li className="py-2">

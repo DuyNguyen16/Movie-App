@@ -47,7 +47,7 @@ const Routing = () => {
           <Route path="/" element={<App />} />
           <Route path="/user/login" element={<LoginPage />} />
           <Route path="user/signup" element={<SignUpPage />} />
-          <Route path="/:name" element={<AboutFilm />} />
+          <Route path="/about/:name" element={<AboutFilm />} />
           <Route path="/search/:filmName" element={<SearchedFilm />} />
           <Route path="/bookmark/:uid" element={<Bookmark />}></Route>
           <Route path="/user/resetPassword" element={<ResetPasswordPage />}></Route>

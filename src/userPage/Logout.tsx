@@ -3,6 +3,7 @@ import { auth } from '../../firebase'; // Import Firebase auth instance
 import { signOut } from 'firebase/auth'; // Import signOut method
 import { useNavigate } from 'react-router-dom';
 import { mainContext } from '../constant/Constant';
+import { toast } from 'react-toastify';
 
 const Logout = () => {
   const navigatte = useNavigate();
@@ -12,11 +13,15 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth); // Sign out the user from Firebase
-      console.log('User logged out');
+      toast.success(`User Logged out`);
       setIsDropdownOpen(false); // Close the dropdown after logout
       // Optionally, redirect to another page after logout
-    } catch (error) {
-      console.error('Error logging out:', error);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        toast.error(`Error logging out: ${error.message}`);
+      } else {
+        toast.error('Unknown error occurred during logout.');
+      }
     }
   };
 

@@ -3,6 +3,7 @@ import { Film } from '../types/Types';
 import { Link } from 'react-router-dom';
 
 const Card = ({ film }: { film: Film }) => {
+  const year = film.Year ? film.Year.slice(0, 4) : "N/A";
   return (
     <div
       key={film.imdbID}
@@ -19,12 +20,12 @@ const Card = ({ film }: { film: Film }) => {
         <h2 className="text-md lg:text-sm font-bold pb-1">{film.Title}</h2>
         <div className="flex-grow"></div> {/* Spacer pushes content below */}
         <div className="md:flex md:justify-between pb-1">
-          <p className="text-md">{film.Year.slice(0, 4)}</p>
+          <p className="text-md">{year}</p>
           <p className="border rounded-md px-1">{film.Type}</p>
         </div>
         {/* Button */}
         <Link
-          to={`/${film.Title}`}
+          to={`/about/${film.Title}`}
           key={film.imdbID}
           className="bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-2 py-1"
         >
