@@ -1,4 +1,4 @@
-import { apiKey } from '../../../api/api';
+import { apiKey } from '../../api/api';
 import { User } from 'firebase/auth';
 import React from 'react';
 

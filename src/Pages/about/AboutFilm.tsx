@@ -5,7 +5,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { doc, setDoc, deleteDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
 import { toast } from "react-toastify";
-import { YOUTUBE_DATA_API } from "../../../../api/api";
+import { YOUTUBE_DATA_API } from "../../../api/api";
 import LoginModal from "../../Components/LoginModal";
 
 const AboutFilm = () => {
