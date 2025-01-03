@@ -35,3 +35,17 @@ This is a movie application built using **React**, **TypeScript**, and **Vite**.
 
    ```bash
    git clone https://github.com/DuyNguyen16/Movie-App.git
+
+2. Install dependencies:
+
+   ```bash
+   cd movie-app
+   npm install
+
+3. Set up your APIKEYS and create a .env file in the root directory with the following variables:
+
+   ```bash
+   VITE_OMDB_API_KEY=your_omdb_api_key
+   VITE_YOUTUBE_DATA_API=
+   VITE_firebaseAPIKey=your_firebase_api_key
+   ```
