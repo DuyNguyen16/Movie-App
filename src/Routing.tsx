@@ -41,7 +41,7 @@ const Routing = () => {
   return (
     <mainContext.Provider value={context}>
       <BrowserRouter>
-        <ToastContainer className="pt-2 md:pt-14" position="top-right" autoClose={5000} />
+        <ToastContainer className="mt-2 md:mt-14" position="top-right" autoClose={5000} />
         <Header />
         <Routes>
           <Route path="/" element={<App />} />

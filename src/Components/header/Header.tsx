@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { mainContext } from "../../constant/Constant";
-import Logout from "../../userPage/Logout";
+import UserProfile from "../../UserPage/UserProfile";
 
 const Header = () => {
     const context = useContext(mainContext);
@@ -58,7 +58,7 @@ const Header = () => {
                 </nav>
 
                 <div className="lg:hidden flex items-center gap-5">
-                {context.user?.email == null ? <></> :<Logout />}
+                {context.user?.email == null ? <></> :<UserProfile />}
                     <button
                         className="text-white text-xl"
                         onClick={() => setMenuOpen(!menuOpen)}
@@ -94,7 +94,7 @@ const Header = () => {
                             </Link>
                         </div>
                     ) : (
-                        <Logout />
+                        <UserProfile />
                     )}
 
                 </div>

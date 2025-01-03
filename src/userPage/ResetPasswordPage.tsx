@@ -43,7 +43,7 @@ const ResetPasswordPage = () => {
         <div className="flex justify-center pt-32 h-screen">
             <div className="p-6 shadow-myShadow md:w-[32rem] h-[20rem] flex flex-col gap-4">
                 <h1 className="font-bold text-center pb-5 text-2xl">Reset Password</h1>
-                <form className="flex flex-col gap-2" onSubmit={handleOnSubmit}>
+                <form className="flex flex-col gap-3" onSubmit={handleOnSubmit}>
                     <div className="relative text-white">
                         <input
                             className="p-1 rounded-sm w-full bg-[#222222] pl-8 py-2"

@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleSignIn from '../Components/GoogleSignIn';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
     const [email, setEmail] = useState('');
@@ -27,9 +28,9 @@ const LoginPage = () => {
 
         try {
             // Firebase Auth sign-in method
-            const userCred = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCred.user;
-            console.log('Login successful:', user);
+            await signInWithEmailAndPassword(auth, email, password);
+            
+            toast.success('Login successful:');
             navigate('/'); // Redirect to home after successful login
         } catch (error) {
             if (error instanceof FirebaseError) {

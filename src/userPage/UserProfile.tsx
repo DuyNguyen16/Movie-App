@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { mainContext } from '../constant/Constant';
 import { toast } from 'react-toastify';
 
-const Logout = () => {
+const UserProfile = () => {
   const navigatte = useNavigate();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // State to control dropdown visibility
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); 
   const context = useContext(mainContext);
 
   const handleLogout = async () => {
@@ -65,4 +65,4 @@ const Logout = () => {
   );
 };
 
-export default Logout;
+export default UserProfile;
