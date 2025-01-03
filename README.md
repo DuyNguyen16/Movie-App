@@ -2,6 +2,8 @@
 
 This is a movie application built using **React**, **TypeScript**, and **Vite**. It allows users to **sign up** and **login** to view movie details, and **bookmark** their favorite movies. The app fetches movie data from **OMDb API** and **YouTube Data API v3**, and stores user information and bookmarks in **Firebase Firestore**.
 
+## [Live Demo](https://mymovies123.netlify.app/)
+
 ## Features
 
 - User authentication using Firebase (Sign Up / Login)
@@ -49,3 +51,7 @@ This is a movie application built using **React**, **TypeScript**, and **Vite**.
    VITE_YOUTUBE_DATA_API=
    VITE_firebaseAPIKey=your_firebase_api_key
    ```
+
+## Contributing
+
+Feel free to fork the repository and submit pull requests. If you find any bugs or have suggestions for improvement, please open an issue.
