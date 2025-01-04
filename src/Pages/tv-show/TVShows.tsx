@@ -70,7 +70,7 @@ const TVShows = () => {
     }, []);
 
     return (
-    <section id="tv-shows" className="px-1">
+    <section id="tv-shows" className="">
         <div className="flex justify-center pt-8">
         <h1 className="font-bold text-4xl text-emerald-600">New TV Shows</h1>
         </div>
@@ -82,7 +82,7 @@ const TVShows = () => {
         ) : error ? (
         <div className="flex justify-center text-red-500">{error}</div>
         ) : (
-        <div className="w-full h-fit flex flex-col md:flex-row md:flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
+        <div className="w-full h-fit flex flex-row flex-wrap justify-center gap-3 pt-8 pb-8">
             {tvShows.map((tvShow) => (
             <Card film={tvShow} key={tvShow.imdbID} />
             ))}

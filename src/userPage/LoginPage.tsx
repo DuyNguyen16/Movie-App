@@ -58,9 +58,9 @@ const LoginPage = () => {
     };
 
     return (
-        <section className="flex justify-center pt-32 h-screen">
-            <div>
-                <div className="p-6 shadow-myShadow md:w-[32rem] h-[30rem] bg-[#222222">
+        <section className="pt-32 h-screen">
+            <div className='w-full flex justify-center'>
+                <div className="p-6 shadow-myShadow w-full mx-6 md:w-[32rem] h-[30rem] bg-[#222222">
                     <h1 className="font-bold text-center pb-5 text-3xl">Login</h1>
                     <form className="flex flex-col gap-2" onSubmit={handleOnSubmit}>
                         <div className='relative text-white'>

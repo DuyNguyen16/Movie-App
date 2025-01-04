@@ -72,7 +72,7 @@ const Header = () => {
                     <div className="relative">
                         <form onSubmit={handleOnSubmit}>
                             <input
-                                className="text-black rounded-lg border-0 px-2 h-8 w-64 outline-none"
+                                className="text-black rounded-lg border-0 px-2 h-9 w-64 outline-none"
                                 placeholder="Search"
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
@@ -88,7 +88,7 @@ const Header = () => {
                         </form>
                     </div>
                     {context.user?.email == null ? (
-                        <div className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
+                        <div className="bg-emerald-500 px-4 rounded-md h-9 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
                             <Link to="/user/Login">
                                 <span className="cursor-pointer">Login/Signup</span>
                             </Link>
@@ -113,7 +113,7 @@ const Header = () => {
                                 TV Series
                             </HashLink>
                         </li>
-                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold">
+                        <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
                             <HashLink to={`/bookmark/${context.user?.uid}`} smooth>
                                 Bookmarks
                             </HashLink>
@@ -122,7 +122,7 @@ const Header = () => {
                             <div className="relative">
                                 <form onSubmit={handleOnSubmit}>
                                     <input
-                                        className="text-black rounded-lg border-0 px-2 h-8 w-full outline-none"
+                                        className="text-black rounded-lg border-0 px-2 h-9 w-full outline-none"
                                         placeholder="Search"
                                         value={input}
                                         onChange={(e) => setInput(e.target.value)}
@@ -140,7 +140,7 @@ const Header = () => {
                         </li>
                         <li className="py-2">
                         {context.user?.email == null ? (
-                        <Link to="/user/Login" className="bg-emerald-500 px-4 rounded-md h-8 flex items-center text-white font-semibold hover:bg-emerald-700 duration-150">
+                        <Link to="/user/Login" className="bg-emerald-500 rounded-md h-9 flex justify-center items-center text-white font-semibold hover:bg-emerald-700 duration-150">
                                 Login/Signup
                         </Link>
                     ) : (

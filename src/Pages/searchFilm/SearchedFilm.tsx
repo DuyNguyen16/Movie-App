@@ -55,7 +55,7 @@ const SearchedFilm = () => {
 
   return (
     <section>
-      <div>
+      <div className="min-h-screen">
         <div className="flex justify-center pt-8">
           <h1 className="font-bold text-4xl text-emerald-600">Searched films</h1>
         </div>
@@ -64,7 +64,7 @@ const SearchedFilm = () => {
         ) : error ? (
           <div className="flex justify-center text-red-500">{error}</div>
         ) : film.length === 0 ? (
-          <div className="flex justify-center text-red-500">Could not find any film called '{filmName}'!</div>
+          <div className="flex justify-center text-red-500 pt-32">Could not find any film called '{filmName}'!</div>
         ) : (
           <div className="w-full h-fit flex flex-row flex-wrap justify-center gap-3 px-4 pt-8 pb-8">
             {film.map((film) => (

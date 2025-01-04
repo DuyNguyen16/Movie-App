@@ -4,6 +4,11 @@ This is a movie application built using **React**, **TypeScript**, and **Vite**.
 
 ## [Live Demo](https://mymovies123.netlify.app/)
 
+### Test Account
+
+Email: test123@gmail.com
+Password: test123
+
 ## Features
 
 - User authentication using Firebase (Sign Up / Login)

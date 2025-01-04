@@ -121,7 +121,7 @@ const AboutFilm = () => {
       await deleteDoc(bookmarkRef);
 
       setIsBookmarked(false);
-      toast.info(`Removed Bookmark: ${film.Title}`);
+      toast.info(`Removed Bookmark: ${film.Title}!`);
     } catch (err) {
       console.error("Error removing bookmark:", err);
       toast.error("Failed to remove the bookmark. Please try again.");
@@ -236,7 +236,7 @@ const AboutFilm = () => {
               </div>
             </div>
 
-            <div className="flex myScreenTwo:justify-center myScreenTwo:mt-14 myScreenTwo:ml-10 mb-6 mx-7">
+            <div className="flex myScreenTwo:justify-center myScreenTwo:mt-14 myScreenTwo:ml-10 mb-6 mx-7 justify-center">
               {trailerUrl ? (
                 <iframe
                   src={trailerUrl}

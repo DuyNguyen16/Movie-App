@@ -7,7 +7,7 @@ const Card = ({ film }: { film: Film }) => {
   return (
     <div
       key={film.imdbID}
-      className="shadow-myShadow p-4 rounded flex flex-col w-44 lg:w-56 gap-4 md:gap-0"
+      className="shadow-myShadow rounded flex flex-col w-48 lg:w-56"
     >
       {/* Poster */}
       <img
@@ -16,7 +16,7 @@ const Card = ({ film }: { film: Film }) => {
         className="w-full h-56 lg:h-64 film-cover rounded"
       />
       {/* Overlay with Title and Year */}
-      <div className="mt-2 text-white flex flex-col flex-grow">
+      <div className="mt-2 text-white flex flex-col flex-grow px-1">
         <h2 className="text-md lg:text-sm font-bold pb-1">{film.Title}</h2>
         <div className="flex-grow"></div> {/* Spacer pushes content below */}
         <div className="flex justify-between pb-1">
@@ -27,7 +27,7 @@ const Card = ({ film }: { film: Film }) => {
         <Link
           to={`/about/${film.Title}`}
           key={film.imdbID}
-          className="bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-2 py-1"
+          className="bg-emerald-600 rounded-sm hover:bg-emerald-800 duration-150 text-white font-bold mt-2 py-1 mb-1"
         >
           <button className="w-full">More</button>
         </Link>

@@ -43,13 +43,15 @@ const Bookmark = () => {
     // Only run if there's a valid user email
     if (context.user?.email) {
       getUserBookmarks(context.user.email);
+      window.scrollTo(0, 0);
     } else {
       setLoading(false)
+      window.scrollTo(0, 0);
     }
   }, [context.user?.email]);
 
   return (
-    <section id="movies" className="lg:px-1 h-screen">
+    <section id="movies" className="lg:px-1 min-h-screen">
       <div className="flex justify-center pt-8">
         <h1 className="font-bold text-4xl text-emerald-600"> My Bookmarks</h1>
       </div>
