@@ -27,7 +27,7 @@ const Header = () => {
     };
 
     return (
-        <header className="text-white" id="header">
+        <header className="text-white z-50" id="header">
             <div className="flex bg-myDark shadow-myShadow h-16 items-center px-6 justify-between">
                 <div>
                     <Link to={"/"}
@@ -101,7 +101,7 @@ const Header = () => {
             </div>
 
             {menuOpen && (
-                <div className="lg:hidden bg-myDark p-4 absolute top-16 left-0 w-full z-20">
+                <div className="lg:hidden bg-myDark p-4 absolute top-16 left-0 w-full z-50">
                     <ul>
                         <li className="cursor-pointer hover:text-emerald-500 duration-150 font-semibold py-2">
                             <HashLink to="/#movies" smooth>

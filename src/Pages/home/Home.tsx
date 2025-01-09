@@ -94,17 +94,32 @@ const searchMovies = async (movieTitle: string) => {
     }
 
     return (
-        <section className="h-screen" id="home">
+        <section className="h-screen relative z-0" id="home">
             {loading && <p>Loading...</p>}
             {error && <p>Error: {error}</p>}
             {!loading && !error && movies.length > 0 && (
                 <div className="h-3/4 relative overflow-hidden w-full">
-                    <div className="hover:bg-white w-20 md:w-36 h-screen absolute z-10 hover:opacity-10 duration-200 justify-center flex " onClick={handleOnClickLeft}></div>
-                    <div className="hover:bg-white w-20 md:w-36 h-screen absolute z-10 hover:opacity-10 duration-200 justify-center flex right-0" onClick={handleOnClickRight}></div>
+                    {/* Clickable Left Navigation */}
+                    <div
+                        className="absolute top-0 left-0 w-20 md:w-36 h-full z-20 flex items-center justify-center cursor-pointer hover:bg-white hover:opacity-10 duration-200 group"
+                        onClick={handleOnClickLeft}
+                        aria-label="Previous Slide"
+                    >
+                        <i className="fas fa-chevron-left text-3xl text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
+
+                    {/* Clickable Right Navigation */}
+                    <div
+                        className="absolute top-0 right-0 w-20 md:w-36 h-full z-20 flex items-center justify-center cursor-pointer hover:bg-white hover:opacity-10 duration-200 group"
+                        onClick={handleOnClickRight}
+                        aria-label="Next Slide"
+                    >
+                        <i className="fas fa-chevron-right text-3xl text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></i>
+                    </div>
 
                     {/* Background Layer */}
                     <div
-                        className="absolute inset-0"
+                        className="absolute inset-0 z-0"
                         style={{
                             backgroundImage: movies[currentIndex].Poster
                                 ? `url(${movies[currentIndex].Poster})`
@@ -112,7 +127,6 @@ const searchMovies = async (movieTitle: string) => {
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                             filter: "blur(5px)",
-                            zIndex: -1,
                         }}
                     ></div>
 
@@ -123,10 +137,11 @@ const searchMovies = async (movieTitle: string) => {
                             alt={movies[currentIndex].Title}
                             className="w-full h-full object-contain"
                         />
-
-                        {/* Text Overlay */}
-                        <div className="absolute bottom-8 md:left-6 bg-black bg-opacity-70 px-4 mx-4 md:mx-0 py-4 rounded max-w-lg z-20">
-                            <h1 className="text-3xl font-bold pb-2">{movies[currentIndex].Title}</h1>
+                        <div className="absolute bottom-8 md:left-6 bg-black bg-opacity-70 px-4 mx-4 md:mx-0 py-4 rounded max-w-lg z-50">
+                            {/* Movie Details */}
+                            <h1 className="text-3xl font-bold pb-2">
+                                {movies[currentIndex].Title}
+                            </h1>
                             <div className="flex gap-4 md:gap-8 items-center pb-2">
                                 <p className="text-lg bg-emerald-600 font-bold px-2 rounded-lg">
                                     {movies[currentIndex].Year}
@@ -138,23 +153,34 @@ const searchMovies = async (movieTitle: string) => {
                                 <p>{movies[currentIndex].Runtime}</p>
                                 <p>{movies[currentIndex].Genre}</p>
                             </div>
-                            <div>
-                                <p>{movies[currentIndex].Plot}</p>
-                                <p className="font-semibold pt-2">Cast: {movies[currentIndex].Actors}</p>
-                                <p className="font-semibold pb-2">Director: {movies[currentIndex].Director}</p>
-                            </div>
+                            <p>{movies[currentIndex].Plot}</p>
+                            <p className="font-semibold pt-2">
+                                Cast: {movies[currentIndex].Actors}
+                            </p>
+                            <p className="font-semibold pb-2">
+                                Director: {movies[currentIndex].Director}
+                            </p>
                             <div className="flex">
-                                <Link to={`/about/${movies[currentIndex].Title}`} className="px-10 py-2 bg-emerald-500 hover:bg-emerald-700 duration-150 rounded-sm font-semibold">More</Link>
+                                <Link
+                                    to={`/about/${movies[currentIndex].Title}`}
+                                    className="px-10 py-2 bg-emerald-500 hover:bg-emerald-700 duration-150 rounded-sm font-semibold"
+                                >
+                                    More
+                                </Link>
                             </div>
                         </div>
                     </div>
 
                     {/* Dots Navigation */}
-                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2">
+                    <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2 z-20">
                         {movies.map((_, index) => (
                             <div
                                 key={index}
-                                className={`w-3 h-3 rounded-full ${index === currentIndex ? "bg-white" : "bg-gray-500"}`}
+                                className={`w-3 h-3 rounded-full ${
+                                    index === currentIndex
+                                        ? "bg-white"
+                                        : "bg-gray-500"
+                                }`}
                             />
                         ))}
                     </div>
