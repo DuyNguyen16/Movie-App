@@ -6,7 +6,7 @@ const Footer = () => {
                 <div>
                     <h4 className="text-lg font-semibold">About</h4>
                     <p className="mt-2 text-gray-400">
-                        MyMovies helps you explore and discover movies with ease.
+                    MyMovies123 helps you explore and discover movies with ease.
                     </p>
                 </div>
                 <div>

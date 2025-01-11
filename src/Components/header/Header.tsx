@@ -33,7 +33,7 @@ const Header = () => {
                     <Link to={"/"}
                         className="text-2xl font-bold cursor-pointer text-emerald-500"
                     >
-                        MyMovies
+                        MyMovies123
                     </Link>
                 </div>
 
